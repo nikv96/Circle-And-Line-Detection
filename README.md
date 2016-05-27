@@ -1,6 +1,12 @@
 #Synopsis
-A python code using OpenCV for Circle and Line Detection in a video. The code uses the Hough Line Transform and Hough Circle Transform concepts.
+Python script to detect lines and circles in an image using python-opencv. Algorithms usede are Hough Circle and Hough Line Transform.
 
 #How To Run
-Install openCV python on your system according to the guidelines on openCV's website. 
-Run: python LineAndCircleDetection.py
+1. Install opencv python on your system using: ```sudo apt-get install python-opencv python-numpy```
+2. Run: ```python LineAndCircleDetection.py```
+
+#Contributors
+[Nikhil Venkatesh](https://github.com/nikv96)
+
+#Disclaimer
+This repository is no longer being maintained.
