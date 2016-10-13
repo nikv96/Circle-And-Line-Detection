@@ -1,8 +1,25 @@
 import cv2
 import numpy as np
 import sys
+import re
 
+def houghCircles(img):
+	img = cv2.medianBlur(img, 5)
+	cimg = cv2.cvtColor(img,cv2.COLOR_GRAY2BGR)
+	
+	if ((re.compile("3*")).match(cv2.__version__)):
+		circles = cv2.HoughCircles(img, cv2.HOUGH_GRADIENT, 
+				1, 20,param1=70,param2=50,minRadius=0, maxRadius=0)
+	else:
+		circles = cv2.HoughCircles(img, cv2.cv.CV_HOUGH_GRADIENT, 
+				1, 20,param1=70,param2=50,minRadius=0, maxRadius=0)
 
+	if(circles!=None):
+		circles = np.uint16(np.around(circles))
+		for i in circles[0,:]:
+		    cv2.circle(cimg,(i[0],i[1]),i[2],(0,255,0),2)
+		    cv2.circle(cimg,(i[0],i[1]),2,(0,0,255),3)
+	return cimg
 
 def eulerToCoordinateTransform(line):
 	for rho, theta in line:
@@ -15,8 +32,6 @@ def eulerToCoordinateTransform(line):
 		x2 = int(x0 - 1000*(-b))
 		y2 = int(y0 - 1000*(a))
 	return [(x1,y1),(x2,y2)]
-
-
 
 def getIntersection(line_1, line_2):
 	line1 = eulerToCoordinateTransform(line_1)
@@ -41,7 +56,7 @@ def getIntersection(line_1, line_2):
 	y = a1 * x + b1
 	return (x, y)
 
-def HoughLines(img):
+def houghLines(img):
 	gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 	edges = cv2.Canny(gray,50,150,apertureSize = 3)
 
@@ -60,3 +75,27 @@ def HoughLines(img):
 					center = getIntersection(lines[i], lines[j])
 					cv2.circle(img,(center[0],center[1]),2,(0,255,0),3)
 	return img
+	
+if __name__ == '__main__':
+	cap = cv2.VideoCapture(0)
+
+	if not cap.isOpened():
+		print('Exiting with state 1...')
+		exit(1)
+	while(True):
+		ret, frame = cap.read()
+		if not ret:
+			break
+		gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+		
+		houghCircleImage = houghCircles(gray)
+		houghLineImage = houghLines(houghCircleImage)
+
+		cv2.imshow('Circles and Lines', houghLineImage)	
+
+		if cv2.waitKey(1) & 0xFF == ord('q'):
+			break
+
+	cv2.waitKey(0)
+	cv2.destroyAllWindows()
+
