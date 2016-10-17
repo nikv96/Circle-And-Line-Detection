@@ -11,7 +11,7 @@ This script makes use of OpenCV python. The code is compatible with both OpenCV 
   1. For Windows:
     1. Download a precompiled version of [OpenCV](https://sourceforge.net/projects/opencvlibrary/files/opencv-win/3.1.0/opencv-3.1.0.exe/download).
     2. Install by double clicking the executable file.
-    3. Now, copy the cv2.pyd file at opencv/build/python/2.7/cv2.pyd to C:/python27/Scripts/site-packages.
+    3. Now, copy the cv2.pyd file at opencv\build\python\2.7\cv2.pyd to C:\python27\Scripts\site-packages.
   2. For MacOS:
     1. Install [homebrew](http://brew.sh).
     2. Install opencv with ```brew install opencv3```
