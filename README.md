@@ -14,7 +14,11 @@ This script makes use of OpenCV python. The code is compatible with both OpenCV 
     3. Now, copy the cv2.pyd file at opencv\build\python\2.7\cv2.pyd to C:\python27\Scripts\site-packages.
   2. For MacOS:
     1. Install [homebrew](http://brew.sh).
-    2. Install opencv with ```brew install opencv3```
+    2. Install homebrew branch of python using ```brew install python```.
+    3. Add this to your ~/.bash_profile. ```export PATH=/usr/local/bin:$PATH``` to specify the target packages for homebrew.
+    4. Refresh your bash profile using ```source ~/.bash_profile```.
+    5. Install numpy with ```pip install numpy```
+    6. Install opencv with ```brew install opencv3```
   3. For Ubuntu, install with ```sudo apt-get install python-numpy python-opencv```. This should install a stable version of OpenCV-Python 2.4.9. 
   
 3. Test the installation by opening a terminal. Type in ```python```. 
